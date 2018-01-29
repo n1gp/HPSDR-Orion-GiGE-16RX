@@ -11,12 +11,12 @@ the new Gige from both Hermes-Lite and the New protocol Ethernet..
 
 What I have tested:
 
-	IP address change (Static/DHCP) works
-	Firmware upgrade works *NOTE below
-	Transmit works
-	Receive up to 16 receivers at 192k work
-	     tested with cudaSDR, CWSL_Tee/SkimSrv/HermesIntf on my github site
-             https://github.com/n1gp
+IP address change (Static/DHCP) works
+Firmware upgrade works NOTE below
+Transmit works
+Receive up to 16 receivers at 192k work
+tested with cudaSDR, CWSL_Tee/SkimSrv/HermesIntf on my github site
+ https://github.com/n1gp
 
 *NOTE: The firmware upgrade process works except you have to recycle the power
 to get the FPGA to reload. I tested previous versions from 4.7 - 5.2 and they 
@@ -25,12 +25,12 @@ do the same thing. It may be my rig or ...?
 I have not test Puresignal
 
 Some Fixes to note, I found that the Alex Filter algorithm had a minor bug
-where an index was incorrect: C122_frequency_HZ[6]
+where an index was incorrect (~line 2610): C122_frequency_HZ[6]
 
-2610                 if (C122_frequency_HZ[6] > C122_frequency_HZ[0] && C122_frequency_HZ[4] >= C122_frequency_HZ[1] &&
-2611                          C122_frequency_HZ[6] >= C122_frequency_HZ[2] && C122_frequency_HZ[4] >= C122_frequency_HZ[3] &&
-2612                          C122_frequency_HZ[6] >= C122_frequency_HZ[4] && C122_frequency_HZ[6] >= C122_frequency_HZ[5])
-2613                          C122_freq_max <= C122_frequency_HZ[6];
+if (C122_frequency_HZ[6] > C122_frequency_HZ[0] && C122_frequency_HZ[4] >= C122_frequency_HZ[1] &&
+C122_frequency_HZ[6] >= C122_frequency_HZ[2] && C122_frequency_HZ[4] >= C122_frequency_HZ[3] &&
+C122_frequency_HZ[6] >= C122_frequency_HZ[4] && C122_frequency_HZ[6] >= C122_frequency_HZ[5])
+C122_freq_max <= C122_frequency_HZ[6];
 
 
 and also that if one was to operate the firmware at the full 7 receivers
