@@ -1,4 +1,6 @@
 # HPSDR-Orion-GiGE-16RX
+UPDATE: release area contains both the Orion and Angelia firmware. Angelia is 12 max rcvrs.
+
 Modified Old Protocol Orion v5.0 FPGA firmware adding Gige and 16 Receiver functionality
 
 (N1GP) Added 16-rcvr operations, changed to use gigabit ethernet, closed timing per K5SO's
