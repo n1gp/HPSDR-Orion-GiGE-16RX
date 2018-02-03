@@ -95,3 +95,19 @@ but each bit selects the ADC1 or ADC2 since that's what current ANAN offers.
         | +------------------------ ADC assignment for RX15 (0 = ADC1, 1 = ADC2)
         +-------------------------- ADC assignment for RX16 (0 = ADC1, 1 = ADC2)
 
+(Adding use of upper 3 MSBits of C3 for a 1-7 second Deadman watchdog timeout)
+
+C0
+0 0 0 1 0 1 0 x   
+
+
+C3
+0 0 0 0 0 0 0 0
+|   | | | | | |
+|   | | | | | +------------ Metis DB9 pin 1 Open Drain Output (0=OFF, 1= ON)
+|   | | | | +-------------- Metis DB9 pin 2 Open Drain Output (0=OFF, 1= ON)
+|   | | | +---------------- Metis DB9 pin 3 3.3v TTL Output (0=OFF, 1= ON)
+|   | | +------------------ Metis DB9 pin 4 3.3v TTL Output (0=OFF, 1= ON)
+|   | +-------------------- 20dB Attenuator on Mercury when Tx (0 = disable, 1 = enable)
++---+---------------------- 1-7 second Deadman watchdog (0 disabled)
+
