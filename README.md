@@ -14,17 +14,23 @@ the new Gige from both Hermes-Lite and the New protocol Ethernet..
 What I have tested:
 
 IP address change (Static/DHCP) works
-Firmware upgrade works NOTE below
+
+Firmware upgrade works (NOTE below about recycling power)
+
 Transmit works
-Receive up to 16 receivers at 192k work
+
+Receive up to 16 receivers at 192k work, 16 @ 384k is too much for my PC to handle.
+
 tested with cudaSDR, CWSL_Tee/SkimSrv/HermesIntf on my github site
  https://github.com/n1gp
+ 
+And also Alans(M0NNB) SparkSDR
 
 *NOTE: The firmware upgrade process works except you have to recycle the power
 to get the FPGA to reload. I tested previous versions from 4.7 - 5.2 and they 
 do the same thing. It may be my rig or ...?
 
-I have not test Puresignal
+I have not test Puresignal, but I have reports from others trying this firmware that is does work.
 
 Some Fixes to note, I found that the Alex Filter algorithm had a minor bug
 where an index was incorrect (~line 2610): C122_frequency_HZ[6]
@@ -41,6 +47,9 @@ firmware would remember the other 5,6,7 and still use it in the Alex filter
 selection algorithm. I noticed that by watching the bandscope that if I selected
 say rx 7 for 10 meters and then went down to 4 rx's the filters would still
 be on for the 10 meter band.
+
+I recently added a Deadman watchdog timer settable from 1-7 seconds (0 is disabled) using the
+upper (previously unused) 3 MSbits in C3, see below for protocol updates that I hope I can get approved.
 
 In order to use up to 16 receivers I made the following modifications to the 'old' protocol below.
 Basically, remove the 'Time stamp – 1PPS' and change the C0 arrangement to accomodate the new
